@@ -1,0 +1,119 @@
+/* 背景漸層波動動畫 */
+body {
+    font-family: "Microsoft JhengHei", sans-serif;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    background: linear-gradient(-45deg, #a1c4fd, #c2e9fb, #d4fc79, #96e6a1);
+    background-size: 400% 400%;
+    animation: gradientWave 12s ease infinite;
+}
+
+/* 背景動畫效果 */
+@keyframes gradientWave {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+/* 容器樣式與進場動畫 */
+.container {
+    max-width: 800px;
+    margin: 80px auto;
+    padding: 30px;
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 20px;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fadeInUp 1s ease-out forwards;
+}
+
+/* 容器進場動畫 */
+@keyframes fadeInUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* 標題 */
+h1 {
+    text-align: center;
+    color: #003366;
+    font-size: 2.4em;
+    margin-bottom: 30px;
+    text-shadow: 1px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* 表單標籤 */
+label {
+    font-weight: bold;
+    display: block;
+    margin: 15px 0 5px;
+    color: #333;
+}
+
+/* 下拉選單與按鈕樣式 */
+select, button {
+    padding: 12px;
+    font-size: 16px;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+    width: 100%;
+    box-sizing: border-box;
+    transition: all 0.3s ease;
+    margin-bottom: 20px;
+}
+
+/* 焦點樣式 */
+select:focus, button:focus {
+    outline: none;
+    border-color: #3399ff;
+    box-shadow: 0 0 6px rgba(51, 153, 255, 0.5);
+}
+
+/* 按鈕樣式強化 */
+button {
+    background: linear-gradient(to right, #007bff, #00c6ff);
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* 按鈕 hover 效果 */
+button:hover {
+    transform: scale(1.05);
+    box-shadow: 0 10px 20px rgba(0, 123, 255, 0.3);
+}
+
+/* 結果區塊 */
+.results {
+    margin-top: 30px;
+    opacity: 0;
+    animation: fadeInResults 1s ease-in forwards;
+    animation-delay: 0.5s;
+}
+
+/* 結果區塊進場動畫 */
+@keyframes fadeInResults {
+    to {
+        opacity: 1;
+    }
+}
+
+/* 列表樣式 */
+ul {
+    padding-left: 25px;
+    list-style-type: disc;
+    line-height: 1.8;
+    color: #333;
+}

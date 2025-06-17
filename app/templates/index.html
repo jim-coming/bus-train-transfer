@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <title>公車與火車查詢</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>🚍 公車與🚆火車轉乘查詢</h1>
+        <form method="POST">
+            <label for="city">選擇縣市：</label>
+            <select name="city" id="city" onchange="this.form.submit()">
+                <option value="">-- 請選擇 --</option>
+                {% for city in cities %}
+                    <option value="{{ city }}" {% if city == selected_city %}selected{% endif %}>{{ city }}</option>
+                {% endfor %}
+            </select><br><br>
+
+            {% if bus_routes %}
+                <label for="route_id">選擇公車路線：</label>
+                <select name="route_id" id="route_id">
+                    {% for route in bus_routes %}
+                        <option value="{{ route['RouteName']['Zh_tw'] }} ({{ route['RouteID'] }}) [{{ route['Direction'] }}]">
+                            {{ route['RouteName']['Zh_tw'] }} ({{ route['RouteID'] }}) [{{ '去程' if route['Direction']==0 else '返程' }}]
+                        </option>
+                    {% endfor %}
+                </select><br><br>
+                <button type="submit">查詢</button>
+            {% endif %}
+        </form>
+
+        {% if selected_route %}
+            <div class="results">
+                <h2>公車末班時間：{{ last_time }}</h2>
+                <h3>🚆 之後可搭列車：</h3>
+                {% if trains %}
+                    <ul>
+                        {% for train in trains %}
+                            <li>🚆 {{ train['DepartureTime'] }}｜{{ train['TrainType'] }}｜車次{{ train['TrainNo'] }} → {{ train['Destination'] }}</li>
+                        {% endfor %}
+                    </ul>
+                {% else %}
+                    <p>❌ 沒有可搭乘的列車</p>
+                {% endif %}
+            </div>
+        {% endif %}
+    </div>
+</body>
+</html>
